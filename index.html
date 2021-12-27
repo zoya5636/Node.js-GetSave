@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set</title>
+</head>
+<body>
+    <input type="text" id="data">
+    <script>
+        const Http = new XMLHttpRequest();
+        url='http://192.168.1.120:3000/get';
+        Http.open("GET", url, true);
+        Http.onreadystatechange = (e) => {
+            document.getElementById("data").value = Http.responseText;
+        }
+        Http.send(null);
+        function SaveData() {
+            let data = document.getElementById("data").value;
+            console.log(data)
+            const Http = new XMLHttpRequest();
+            url='http://192.168.1.120:3000/set';
+            url = url + "?data="+data
+            Http.open("GET", url, false);
+            Http.send(null);
+            /*Http.onreadystatechange = (e) => {
+                console.log(Http.responseText)
+            }*/
+        }
+    </script>
+    <button onclick="SaveData()">Submit</button>
+</body>
+</html>
