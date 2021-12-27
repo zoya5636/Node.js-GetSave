@@ -2,9 +2,8 @@ const fs = require('fs');
 const express = require('express')
 const app = express()
 const port = 3000
-const host = "192.168.1.120"
 
-//app.use(express.static('public'))
+//app.use(express.static('directory'))
 
 app.get('/get', (req, res) => {
     fs.readFile('data.txt', function(err, data) {
@@ -32,10 +31,9 @@ app.get('/set', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.sendFile("/home/admin/code/FirstProject/index.html")
+    res.sendFile(__dirname + "/index.html")
 })
 
-app.listen(port, host, () => {
-  console.log(`Example app listening at http://${host}:${port}`)
+app.listen(port, () => {
+  console.log(`GetSave listening at ${port}`)
 })
-
